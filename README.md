@@ -1,5 +1,4 @@
 # React-RealTime
-======================
 
 Set of components which provides easy integration Pusher like notification service into your React application.
 
