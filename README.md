@@ -1,5 +1,7 @@
 # React-RealTime
 
+[![Build Status](https://travis-ci.org/petarslavnic/react-realtime.svg?branch=master)](https://travis-ci.org/petarslavnic/react-realtime)
+
 Set of components which provides easy integration Pusher like notification service into your React application.
 
 
