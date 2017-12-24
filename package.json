@@ -12,7 +12,8 @@
     "prepublish": "yarn build",
     "test": "jest",
     "test:watch": "jest --watch",
-    "clean": "rimraf build"
+    "clean": "rimraf build",
+    "coverage": "codecov"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -23,6 +24,7 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
+    "codecov": "^3.0.0",
     "enzyme": "^3.2.0",
     "enzyme-adapter-react-16": "^1.1.0",
     "enzyme-adapter-react-helper": "^1.2.2",
@@ -52,6 +54,8 @@
     "testPathIgnorePatterns": [
       "<rootDir>/node_modules/",
       "<rootDir>/tests/setup.js"
-    ]
+    ],
+    "coverageDirectory": "<rootDir>/coverage/",
+    "collectCoverage": true
   }
 }
