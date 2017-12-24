@@ -5,6 +5,23 @@
   "main": "./build/index.js",
   "author": "Petar Slavnic <petarslavnic@gmail.com> (https://github.com/petarslavnic)",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/petarslavnic/react-realtime.git"
+  },
+  "keywords": [
+    "react",
+    "reactjs",
+    "realtime",
+    "pusher",
+    "slanger",
+    "poxa",
+    "socket"
+  ],
+  "bugs": {
+    "url": "https://github.com/petarslavnic/react-realtime/issues"
+  },
+  "homepage": "https://github.com/petarslavnic/react-realtime",
   "scripts": {
     "build": "babel src -d build",
     "lint": "eslint src/**; exit 0",
@@ -12,6 +29,7 @@
     "prepublish": "yarn build",
     "test": "jest",
     "test:watch": "jest --watch",
+    "test:cov": "jest --coverage",
     "clean": "rimraf build",
     "coverage": "codecov"
   },
@@ -54,8 +72,6 @@
     "testPathIgnorePatterns": [
       "<rootDir>/node_modules/",
       "<rootDir>/tests/setup.js"
-    ],
-    "coverageDirectory": "<rootDir>/coverage/",
-    "collectCoverage": true
+    ]
   }
 }
