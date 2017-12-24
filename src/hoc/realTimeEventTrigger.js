@@ -20,15 +20,17 @@ const realTimeEventTrigger = (mapEventProps) => WrappedComponent => {
     }
 
     handleEventProps = props => {
-      if (typeof mapEventProps !== `function`) {
-        throw new Error(`First argument for this function need to be a function type!`)
+      let newProps
+
+      if (typeof mapEventProps === `function`) {
+        newProps = mapEventProps(this.trigger, props)
       }
 
-      this.eventProps = mapEventProps(this.trigger, props)
-
-      if (typeof this.eventProps !== `object`) {
-        throw new Error(`Passed event props need to be object type!`)
+      if (typeof newProps !== `object`) {
+        newProps = {}
       }
+
+      this.newProps = { ...props, ...newProps }
     }
 
     trigger = (eventName, data) => {
@@ -36,8 +38,7 @@ const realTimeEventTrigger = (mapEventProps) => WrappedComponent => {
     }
 
     render() {
-      const newProps = { ...this.props, ...this.eventProps }
-      return <WrappedComponent { ...newProps} />
+      return <WrappedComponent {...this.newProps} />
     }
   }
 }

@@ -9,18 +9,14 @@ const realTimeEventListener = (eventName, mapEventCallback = null, mapEventProps
 
       if (typeof eventName === `function`) {
         eventName = eventName(props)
+      }
 
-        if (typeof eventName !== `string`) {
-          throw new Error(`The result of a given function needs to be string type!`)
-        }
+      if (typeof eventName !== `string`) {
+        eventName = ``
       }
 
       this.eventName = eventName
       this.oldEventProps = this.newEventProps = { ...props }
-
-      if (typeof this.eventName !== `string`) {
-        throw new Error(`Passed event name value needs to be string type!`)
-      }
     }
 
     static displayName = `RealTimeEventListener(${getDisplayName(WrappedComponent)})`
