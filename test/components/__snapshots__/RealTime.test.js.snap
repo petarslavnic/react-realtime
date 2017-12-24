@@ -5,7 +5,7 @@ exports[`<RealTimeProvider /> should handle callback 1`] = `
   connector={
     Object {
       "subscribe": [Function],
-      "unsubscribe": [Function],
+      "unsubscribe": [MockFunction],
     }
   }
 >
@@ -34,7 +34,7 @@ exports[`<RealTimeProvider /> should handle callback 2`] = `
   connector={
     Object {
       "subscribe": [Function],
-      "unsubscribe": [Function],
+      "unsubscribe": [MockFunction],
     }
   }
 >
@@ -63,7 +63,7 @@ exports[`<RealTimeProvider /> should handle callback 3`] = `
   connector={
     Object {
       "subscribe": [Function],
-      "unsubscribe": [Function],
+      "unsubscribe": [MockFunction],
     }
   }
 >
@@ -92,7 +92,7 @@ exports[`<RealTimeProvider /> should handle callback 4`] = `
   connector={
     Object {
       "subscribe": [Function],
-      "unsubscribe": [Function],
+      "unsubscribe": [MockFunction],
     }
   }
 >
@@ -121,7 +121,7 @@ exports[`<RealTimeProvider /> should handle callback 5`] = `
   connector={
     Object {
       "subscribe": [Function],
-      "unsubscribe": [Function],
+      "unsubscribe": [MockFunction],
     }
   }
 >
@@ -150,7 +150,7 @@ exports[`<RealTimeProvider /> should handle callback 6`] = `
   connector={
     Object {
       "subscribe": [Function],
-      "unsubscribe": [Function],
+      "unsubscribe": [MockFunction],
     }
   }
 >
@@ -179,7 +179,7 @@ exports[`<RealTimeProvider /> should handle callback 7`] = `
   connector={
     Object {
       "subscribe": [Function],
-      "unsubscribe": [Function],
+      "unsubscribe": [MockFunction],
     }
   }
 >
@@ -223,7 +223,7 @@ exports[`<RealTimeProvider /> should render 1`] = `
   connector={
     Object {
       "subscribe": [Function],
-      "unsubscribe": [Function],
+      "unsubscribe": [MockFunction],
     }
   }
 >

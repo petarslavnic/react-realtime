@@ -66,21 +66,14 @@ describe(`<RealTimeProvider />`, () => {
   it(`should accept event name as function`, () => {
     const mockEventNameAsFunc = jest.fn()
 
-    const createMyComponent = () => {
-      MyWrappedComponent = realTimeEventListener(mockEventNameAsFunc)(MyComponent)
-      wrapper = mount(
-        <RealTimeProvider connector={connector}>
-          <RealTimeChannel name="test">
-            <MyWrappedComponent id={89} />
-          </RealTimeChannel>
-        </RealTimeProvider>
-      )
-    }
-
-    // It is expected to throw an error because
-    // we use mock function and her
-    // result are not string type
-    expect(createMyComponent).toThrowError(`The result of a given function needs to be string type!`)
+    MyWrappedComponent = realTimeEventListener(mockEventNameAsFunc)(MyComponent)
+    wrapper = mount(
+      <RealTimeProvider connector={connector}>
+        <RealTimeChannel name="test">
+          <MyWrappedComponent id={89} />
+        </RealTimeChannel>
+      </RealTimeProvider>
+    )
 
     // Actually, we just want to prove that
     // passed function has been called.
@@ -219,57 +212,6 @@ describe(`<RealTimeProvider />`, () => {
     wrapper.setProps({ id: 51 })
 
     expect(wrapper).toMatchSnapshot()
-  })
-
-  it(`should throw error if event name is not a string`, () => {
-    let createMyComponent = eventName => () => {
-      MyWrappedComponent = realTimeEventListener(eventName)(MyComponent)
-      wrapper = mount(
-        <RealTimeProvider connector={connector}>
-          <RealTimeChannel name="test">
-            <MyWrappedComponent id={45} name="Hello World" />
-          </RealTimeChannel>
-        </RealTimeProvider>
-      )
-    }
-
-    let message = `Passed event name value needs to be string type!`
-    let funcMessage = `The result of a given function needs to be string type!`
-
-    expect(createMyComponent(() => ({}))).toThrowError(funcMessage)
-    expect(createMyComponent(undefined)).toThrowError(message)
-    expect(createMyComponent(null)).toThrowError(message)
-    expect(createMyComponent({ name: `Test` })).toThrowError(message)
-    expect(createMyComponent(() => `Test`)).not.toThrowError(message)
-    wrapper.unmount()
-  })
-
-  it(`should throw error if trigger name is not a string`, () => {
-    let createMyComponent = mapEventProps => () => {
-      MyWrappedComponentTrigger = realTimeEventTrigger(mapEventProps)(MyComponent)
-      wrapper = mount(
-        <RealTimeProvider connector={connector}>
-          <RealTimeChannel name="test">
-            <MyWrappedComponentTrigger id={45} name="Hello World" />
-          </RealTimeChannel>
-        </RealTimeProvider>
-      )
-    }
-
-    let message = `First argument for this function need to be a function type!`
-    let funcMessage = `Passed event props need to be object type!`
-
-    expect(createMyComponent(null)).toThrowError(message)
-    expect(createMyComponent(undefined)).toThrowError(message)
-    expect(createMyComponent({ name: `Test` })).toThrowError(message)
-    expect(createMyComponent(`Test`)).toThrowError(message)
-    expect(createMyComponent(() => undefined)).toThrowError(funcMessage)
-    expect(createMyComponent(() => `Test`)).toThrowError(funcMessage)
-    expect(createMyComponent(() => null)).not.toThrowError(message) // type of null is object
-    expect(createMyComponent(() => null)).not.toThrowError(funcMessage) // type of null is object
-    expect(createMyComponent(() => ({}))).not.toThrowError(message)
-    expect(createMyComponent(() => ({}))).not.toThrowError(funcMessage)
-    wrapper.unmount()
   })
 
   it(`should trigger on hijacked function`, () => {
