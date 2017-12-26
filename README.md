@@ -24,18 +24,18 @@ yarn add react-realtime
 
 All components and functions are available on the top-level export.
 
-```
+```js
 import { RealTimeProvider, RealTimeChannel, realTimeEventListener, realTimeEventTrigger } from 'react-realtime'
 ```
 
 #### Pusher example:
 In that case, we need pusher client library. You can find it [here](https://github.com/pusher/pusher-js). Lets first create functional component which will show user name:
-```
+```js
 const UserName = ({ name }) => <span>{`User: ${name}`}</span>
 ```
 
 Wrap user name component inside real-time listener hoc
-```
+```js
 // Trough event comes data object
 const mapDataToProps = (data, ownProps) => {
   return { ...data }
@@ -46,7 +46,7 @@ const MyComponent = realTimeEventListener('my-event', null, mapDataToProps)(User
 ```
 
 Use wrapped component inside appropriate channel
-```
+```js
 // Use your own APP_KEY and APP_CLUSTER from pusher account
 const pusher = new Pusher(APP_KEY, {
   cluster: APP_CLUSTER
