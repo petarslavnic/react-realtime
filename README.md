@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/petarslavnic/react-realtime.svg?branch=master)](https://travis-ci.org/petarslavnic/react-realtime)
 [![codecov](https://codecov.io/gh/petarslavnic/react-realtime/branch/master/graph/badge.svg)](https://codecov.io/gh/petarslavnic/react-realtime)
+[![npm version](https://badge.fury.io/js/react-realtime.svg)](https://badge.fury.io/js/react-realtime)
 
 Set of components which provides easy integration Pusher like notification service into your React application.
 
