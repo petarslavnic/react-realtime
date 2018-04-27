@@ -11,7 +11,14 @@ class RealTimeProvider extends React.Component {
 
   constructor(props) {
     super(props)
-    this.state = { ...this.props.connector }
+    this.state = {
+      subscribe(...attrs) {
+        return props.connector.subscribe(...attrs)
+      },
+      unsubscribe(...attrs) {
+        props.connector.unsubscribe(...attrs)
+      },
+    }
   }
 
   render() {
