@@ -1,5 +1,4 @@
 import React from 'react'
-import { channelShape } from '../shapes'
 import { getDisplayName } from '../utils/displayName'
 
 const realTimeEventTrigger = (mapEventProps) => WrappedComponent => {
@@ -10,10 +9,6 @@ const realTimeEventTrigger = (mapEventProps) => WrappedComponent => {
     }
 
     static displayName = `RealTimeEventTrigger(${getDisplayName(WrappedComponent)})`
-
-    static contextTypes = {
-      channel: channelShape.isRequired,
-    }
 
     componentWillReceiveProps(nextProps) {
       this.handleEventProps(nextProps)
@@ -34,7 +29,7 @@ const realTimeEventTrigger = (mapEventProps) => WrappedComponent => {
     }
 
     trigger = (eventName, data) => {
-      this.context.channel.trigger(eventName, data)
+      this.props.trigger(eventName, data)
     }
 
     render() {

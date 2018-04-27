@@ -1,5 +1,4 @@
 import React from 'react'
-import { channelShape } from '../shapes'
 import { getDisplayName } from '../utils/displayName'
 
 const realTimeEventListener = (eventName, mapEventCallback = null, mapEventProps = null) => WrappedComponent => {
@@ -21,20 +20,16 @@ const realTimeEventListener = (eventName, mapEventCallback = null, mapEventProps
 
     static displayName = `RealTimeEventListener(${getDisplayName(WrappedComponent)})`
 
-    static contextTypes = {
-      channel: channelShape.isRequired,
-    }
-
     componentWillReceiveProps(nextProps) {
       this.newEventProps = { ...this.newEventProps, ...nextProps }
     }
 
     componentDidMount() {
-      this.context.channel.bind(this.eventName, this.handleCallback)
+      this.props.bind(this.eventName, this.handleCallback)
     }
 
     componentWillUnmount() {
-      this.context.channel.unbind(this.eventName, this.handleCallback)
+      this.props.unbind(this.eventName, this.handleCallback)
     }
 
     handleCallback = data => {
