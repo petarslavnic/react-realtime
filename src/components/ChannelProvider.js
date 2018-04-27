@@ -12,8 +12,19 @@ class ChannelProvider extends React.Component {
 
   constructor(props) {
     super(props)
+
+    const channel = props.subscribe(this.props.name)
+
     this.state = {
-      ...props.subscribe(this.props.name),
+      bind(...attrs) {
+        channel.bind(...attrs)
+      },
+      unbind(...attrs) {
+        channel.unbind(...attrs)
+      },
+      trigger(...attrs) {
+        channel.trigger(...attrs)
+      },
     }
   }
 
