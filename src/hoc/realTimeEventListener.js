@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { getDisplayName } from '../utils/displayName'
 
 const realTimeEventListener = (eventName, mapEventCallback = null, mapEventProps = null) => WrappedComponent => {
@@ -19,6 +20,11 @@ const realTimeEventListener = (eventName, mapEventCallback = null, mapEventProps
     }
 
     static displayName = `RealTimeEventListener(${getDisplayName(WrappedComponent)})`
+
+    static propTypes = {
+      bind: PropTypes.func.isRequired,
+      unbind: PropTypes.func.isRequired,
+    }
 
     componentWillReceiveProps(nextProps) {
       this.newEventProps = { ...this.newEventProps, ...nextProps }

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { getDisplayName } from '../utils/displayName'
 
 const realTimeEventTrigger = (mapEventProps) => WrappedComponent => {
@@ -9,6 +10,10 @@ const realTimeEventTrigger = (mapEventProps) => WrappedComponent => {
     }
 
     static displayName = `RealTimeEventTrigger(${getDisplayName(WrappedComponent)})`
+
+    static propTypes = {
+      trigger: PropTypes.func.isRequired,
+    }
 
     componentWillReceiveProps(nextProps) {
       this.handleEventProps(nextProps)
