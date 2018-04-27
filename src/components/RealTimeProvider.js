@@ -1,28 +1,25 @@
-import { Component, Children } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { connectorShape } from '../shapes'
+import ServiceContext from '../context/ServiceContext'
 
-class RealTimeProvider extends Component {
-  getChildContext() {
-    return { connector: this.connector }
-  }
-
+class RealTimeProvider extends React.Component {
   static propTypes = {
     connector: connectorShape.isRequired,
     children: PropTypes.element.isRequired,
   }
 
-  static childContextTypes = {
-    connector: connectorShape.isRequired,
-  }
-
   constructor(props) {
     super(props)
-    this.connector = props.connector
+    this.state = { ...this.props.connector }
   }
 
   render() {
-    return Children.only(this.props.children)
+    return (
+      <ServiceContext.Provider value={this.state}>
+        {React.Children.only(this.props.children)}
+      </ServiceContext.Provider>
+    )
   }
 }
 
