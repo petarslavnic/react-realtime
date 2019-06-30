@@ -8,7 +8,7 @@
     "es6": true
   },
   "parser": "babel-eslint",
-  "plugins": ["react", "compat"],
+  "plugins": ["react", "compat", "react-hooks"],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
@@ -54,6 +54,8 @@
     "react/no-unused-prop-types": 2,
     "react/prefer-stateless-function": 2,
     "react/self-closing-comp": 2,
-    "react/react-in-jsx-scope": 2
+    "react/react-in-jsx-scope": 2,
+    "react-hooks/rules-of-hooks": 'error',
+    "react-hooks/exhaustive-deps": 'warn'
   }
 }
