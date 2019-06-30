@@ -1,33 +1,32 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 import { connectorShape } from '../shapes'
-import ServiceContext from '../context/ServiceContext'
+import { ServiceContext } from '../context'
 
-class RealTimeProvider extends React.Component {
-  static propTypes = {
-    connector: connectorShape.isRequired,
-    children: PropTypes.element.isRequired,
-  }
-
-  constructor(props) {
-    super(props)
-    this.state = {
+const RealTimeProvider = ({ connector, children }) => {
+  const value = useMemo(() => {
+    return {
       subscribe(...attrs) {
-        return props.connector.subscribe(...attrs)
+        return connector.subscribe(...attrs)
       },
       unsubscribe(...attrs) {
-        props.connector.unsubscribe(...attrs)
+        connector.unsubscribe(...attrs)
       },
     }
-  }
+  }, [connector])
 
-  render() {
-    return (
-      <ServiceContext.Provider value={this.state}>
-        {React.Children.only(this.props.children)}
-      </ServiceContext.Provider>
-    )
-  }
+  return (
+    <ServiceContext.Provider value={value}>
+      {React.Children.only(children)}
+    </ServiceContext.Provider>
+  )
 }
+
+RealTimeProvider.propTypes = {
+  connector: connectorShape.isRequired,
+  children: PropTypes.element.isRequired,
+}
+
+RealTimeProvider.displayName = `RealTimeProvider`
 
 export default RealTimeProvider
