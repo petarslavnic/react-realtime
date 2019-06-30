@@ -14,6 +14,11 @@
       "jsx": true
     },
   },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "rules": {
     "compat/compat": 2,
     "arrow-spacing": 2,
