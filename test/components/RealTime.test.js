@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { mount } from 'enzyme'
 import {
   RealTimeProvider,
@@ -99,9 +99,9 @@ describe(`<RealTimeProvider />`, () => {
   it(`should trigger fake event on click`, () => {
     MyComponent = () => {
       const trigger = useRealTimeEventTrigger()
-      const handleClick = () => {
+      const handleClick = useCallback(() => {
         trigger(`TestEvent`, { test: 1234 })
-      }
+      }, [trigger])
       return (
         <button className="test" type="button" onClick={handleClick} />
       )
