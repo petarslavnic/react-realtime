@@ -4,6 +4,10 @@ exports[`<RealTimeProvider /> should render 1`] = `
 <RealTimeProvider
   connector={
     Object {
+      "connection": Object {
+        "bind": [MockFunction],
+        "unbind": [MockFunction],
+      },
       "subscribe": [Function],
       "unsubscribe": [MockFunction],
     }

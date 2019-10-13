@@ -5,6 +5,7 @@ import {
   RealTimeChannel,
   useRealTimeEventListener,
   useRealTimeEventTrigger,
+  useRealTimeConnectionEventListener,
 } from '../../src'
 
 describe(`<RealTimeProvider />`, () => {
@@ -19,6 +20,10 @@ describe(`<RealTimeProvider />`, () => {
     connector = {
       subscribe: () => ({ bind, unbind, trigger }),
       unsubscribe,
+      connection: {
+        bind: jest.fn(),
+        unbind: jest.fn(),
+      },
     }
     MyComponent = ({ callback }) => {
       useRealTimeEventListener(`CommentCreated`, callback)
@@ -60,24 +65,7 @@ describe(`<RealTimeProvider />`, () => {
     expect(unsubscribe).toHaveBeenCalled()
   })
 
-  it(`should call bind on channel when component did mount`, () => {
-    const myCallback = jest.fn()
-
-    wrapper = mount(
-      <RealTimeProvider connector={connector}>
-        <RealTimeChannel name="test">
-          <MyComponent callback={myCallback}/>
-        </RealTimeChannel>
-      </RealTimeProvider>
-    )
-
-    expect(bind).toHaveBeenCalled()
-    expect(bind).toHaveBeenCalledWith(`CommentCreated`, myCallback)
-
-    wrapper.unmount()
-  })
-
-  it(`should call unbind on channel when component will unmount`, () => {
+  it(`should call bind/unbind on channel when component mount/unmount`, () => {
     const myCallback = jest.fn()
 
     wrapper = mount(
@@ -89,6 +77,8 @@ describe(`<RealTimeProvider />`, () => {
     )
 
     expect(unbind).not.toHaveBeenCalled()
+    expect(bind).toHaveBeenCalled()
+    expect(bind).toHaveBeenCalledWith(`CommentCreated`, myCallback)
 
     wrapper.unmount()
 
@@ -119,5 +109,31 @@ describe(`<RealTimeProvider />`, () => {
 
     expect(trigger).toHaveBeenCalled()
     expect(trigger).toHaveBeenCalledWith(`TestEvent`, { test: 1234 })
+  })
+
+  it(`should call bind/unbind on connection when component mount/unmount`, () => {
+    MyComponent = ({ callback }) => {
+      useRealTimeConnectionEventListener(`connected`, callback)
+      return (<span>Test</span>)
+    }
+
+    const myCallback = jest.fn()
+
+    wrapper = mount(
+      <RealTimeProvider connector={connector}>
+        <RealTimeChannel name="test">
+          <MyComponent callback={myCallback} />
+        </RealTimeChannel>
+      </RealTimeProvider>
+    )
+
+    expect(connector.connection.unbind).not.toHaveBeenCalled()
+    expect(connector.connection.bind).toHaveBeenCalled()
+    expect(connector.connection.bind).toHaveBeenCalledWith(`connected`, myCallback)
+
+    wrapper.unmount()
+
+    expect(connector.connection.unbind).toHaveBeenCalled()
+    expect(connector.connection.unbind).toHaveBeenCalledWith(`connected`, myCallback)
   })
 })
