@@ -12,6 +12,7 @@ const RealTimeProvider = ({ connector, children }) => {
       unsubscribe(...attrs) {
         connector.unsubscribe(...attrs)
       },
+      connection: connector.connection,
     }
   }, [connector])
 
