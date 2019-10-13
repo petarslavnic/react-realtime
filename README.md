@@ -9,7 +9,7 @@ Set of components which provides easy integration Pusher like notification servi
 
 ## Installation
 
-React Realtime requires **React 15.6.0 or later.**
+React Realtime requires **React 16.8.0 or later.**
 
 ```
 npm i react-realtime
@@ -26,28 +26,80 @@ yarn add react-realtime
 All components and functions are available on the top-level export.
 
 ```js
-import { RealTimeProvider, RealTimeChannel, realTimeEventListener, realTimeEventTrigger } from 'react-realtime'
+import {
+  RealTimeProvider,
+  RealTimeChannel,
+  useRealTimeEventListener,
+  useRealTimeEventTrigger,
+  useRealTimeConnectionEventListener,
+} from 'react-realtime'
 ```
 
 #### Pusher example:
-In that case, we need pusher client library. You can find it [here](https://github.com/pusher/pusher-js). Lets first create functional component which will show user name:
-```js
-const UserName = ({ name }) => <span>{`User: ${name}`}</span>
-```
+In that case, we need pusher client library. You can find it [here](https://github.com/pusher/pusher-js).
 
-Wrap user name component inside real-time listener hoc
+Channel event listener example:
 ```js
-// Trough event comes data object
-const mapDataToProps = (data, ownProps) => {
-  return { ...data }
+import React, { useState, useCallback } from 'react'
+import { useRealTimeEventListener } from 'react-realtime'
+
+const MyComponent = () => {
+  const [name, setName] = useState('')
+  const onMyEventCallback = useCallback(data => {
+    // do something with real-time data
+    // for example set username
+    const { name } = data
+    setName(name)
+  }, [])
+
+  useRealTimeEventListener('user-updated-event', onMyEventCallback)
+
+  return <span>{`User: ${name}`}</span>
 }
-
-// bind to a specific event
-const MyComponent = realTimeEventListener('my-event', null, mapDataToProps)(UserName)
 ```
 
-Use wrapped component inside appropriate channel
+Channel event trigger example:
 ```js
+import React, { useMemo, useCallback } from 'react'
+import { useRealTimeEventTrigger } from 'react-realtime'
+
+const MyComponent = () => {
+  const data = useMemo(() => {
+    // for example return empty object
+    return {}
+  }, [])
+  const trigger = useRealTimeEventTrigger()
+  const handleClick = useCallback(() => {
+    trigger('client-my-event', data)
+  }, [])
+
+  return <span onClick={handleClick}>My Component</span>
+}
+```
+
+Connection event listener example:
+```js
+import React, { useState, useCallback } from 'react'
+import { useRealTimeConnectionEventListener } from 'react-realtime'
+
+const MyComponent = () => {
+  const [status, setStatus] = useState('connected')
+  const onStateChange = useCallback(status => {
+    setStatus(status)
+  }, [])
+
+  useRealTimeConnectionEventListener('state_change', onStateChange)
+
+  return <span>{`Connection status: ${status}`}</span>
+}
+```
+
+Use MyComponent inside appropriate channel
+```js
+import React from 'react'
+import Pusher from 'pusher-js'
+import { RealTimeProvider, RealTimeChannel } from 'react-realtime'
+
 // Use your own APP_KEY and APP_CLUSTER from pusher account
 const pusher = new Pusher(APP_KEY, {
   cluster: APP_CLUSTER
