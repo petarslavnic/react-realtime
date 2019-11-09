@@ -20,7 +20,6 @@
     }
   },
   "rules": {
-    "compat/compat": 2,
     "arrow-spacing": 2,
     "comma-dangle": [ 2, "always-multiline" ],
     "dot-notation": 2,
