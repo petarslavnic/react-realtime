@@ -27,9 +27,7 @@
   "homepage": "https://github.com/petarslavnic/react-realtime",
   "scripts": {
     "build": "webpack",
-    "lint": "eslint src/**; exit 0",
-    "lint:watch": "esw -w src/**",
-    "prepublish": "yarn build",
+    "lint": "eslint src",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
