@@ -3,6 +3,9 @@
   "version": "1.1.0",
   "description": "Set of components which provides easy integration Pusher like notification service into your React application.",
   "main": "./dist/react-realtime.js",
+  "files": [
+    "./dist"
+  ],
   "author": "Petar Slavnic <petarslavnic@gmail.com> (https://github.com/petarslavnic)",
   "license": "MIT",
   "repository": {
