@@ -1,6 +1,6 @@
 {
   "name": "react-realtime",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Set of components which provides easy integration Pusher like notification service into your React application.",
   "main": "./dist/react-realtime.js",
   "files": [
