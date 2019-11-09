@@ -8,7 +8,7 @@ const initialState = {
   trigger: () => {},
 }
 
-const RealTimeChannel = ({ name, children }) => {
+export const RealTimeChannel = ({ name, children }) => {
   const { subscribe, unsubscribe } = useContext(ServiceContext)
   const [ value, setValue ] = useState(initialState)
 
@@ -46,7 +46,3 @@ RealTimeChannel.propTypes = {
   name: PropTypes.string.isRequired,
   children: PropTypes.any,
 }
-
-RealTimeChannel.displayName = `RealTimeChannel`
-
-export default RealTimeChannel
