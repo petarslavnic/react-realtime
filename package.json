@@ -2,7 +2,10 @@
   "name": "react-realtime",
   "version": "1.1.0",
   "description": "Set of components which provides easy integration Pusher like notification service into your React application.",
-  "main": "./build/index.js",
+  "main": "./dist/react-realtime.js",
+  "files": [
+    "./dist"
+  ],
   "author": "Petar Slavnic <petarslavnic@gmail.com> (https://github.com/petarslavnic)",
   "license": "MIT",
   "repository": {
@@ -23,56 +26,42 @@
   },
   "homepage": "https://github.com/petarslavnic/react-realtime",
   "scripts": {
-    "build": "babel src -d build",
-    "lint": "eslint src/**; exit 0",
-    "lint:watch": "esw -w src/**",
-    "prepublish": "yarn build",
+    "build": "webpack",
+    "lint": "eslint src",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
-    "clean": "rimraf build",
+    "clean": "rimraf dist",
     "coverage": "codecov"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
     "@babel/core": "^7.4.5",
-    "@babel/plugin-proposal-class-properties": "^7.4.4",
     "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
     "babel-eslint": "^10.0.2",
+    "babel-loader": "^8.0.6",
+    "clean-webpack-plugin": "^3.0.0",
     "codecov": "^3.5.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "enzyme-adapter-react-helper": "^1.3.5",
     "enzyme-to-json": "^3.3.5",
-    "eslint": "^6.0.1",
-    "eslint-plugin-compat": "^3.2.0",
+    "eslint": "^6.6.0",
+    "eslint-plugin-compat": "^3.3.0",
     "eslint-plugin-import": "^2.18.0",
     "eslint-plugin-react": "^7.14.2",
     "eslint-plugin-react-hooks": "^1.6.1",
     "jest": "^24.8.0",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "terser-webpack-plugin": "^2.2.1",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
   },
   "peerDependencies": {
     "prop-types": "^15.7.2",
     "react": "^16.8.6"
-  },
-  "jest": {
-    "rootDir": ".",
-    "roots": [
-      "<rootDir>/test/"
-    ],
-    "snapshotSerializers": [
-      "<rootDir>/node_modules/enzyme-to-json/serializer"
-    ],
-    "setupFilesAfterEnv": [
-      "<rootDir>/test/setup.js"
-    ],
-    "testPathIgnorePatterns": [
-      "<rootDir>/node_modules/",
-      "<rootDir>/tests/setup.js"
-    ]
   }
 }

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connectorShape } from '../shapes'
 import { ServiceContext } from '../context'
 
-const RealTimeProvider = ({ connector, children }) => {
+export const RealTimeProvider = ({ connector, children }) => {
   const value = useMemo(() => {
     return {
       subscribe(...attrs) {
@@ -27,7 +27,3 @@ RealTimeProvider.propTypes = {
   connector: connectorShape.isRequired,
   children: PropTypes.element.isRequired,
 }
-
-RealTimeProvider.displayName = `RealTimeProvider`
-
-export default RealTimeProvider
