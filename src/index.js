@@ -1,15 +1,2 @@
-import RealTimeProvider from './components/RealTimeProvider'
-import RealTimeChannel from './components/RealTimeChannel'
-import {
-  useRealTimeEventListener,
-  useRealTimeEventTrigger,
-  useRealTimeConnectionEventListener,
-} from './hooks'
-
-export {
-  RealTimeProvider,
-  RealTimeChannel,
-  useRealTimeEventListener,
-  useRealTimeEventTrigger,
-  useRealTimeConnectionEventListener,
-}
+export * from './components'
+export * from './hooks'
