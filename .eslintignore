@@ -1,2 +1,4 @@
-dist
-node_modules
+**/*.js
+**/*.snap
+!src/**/*.js
+!test/**/*.js
