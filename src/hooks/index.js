@@ -1,9 +1,3 @@
-import { useRealTimeEventListener } from './useRealtimeEventListener'
-import { useRealTimeEventTrigger } from './useRealTimeEventTrigger'
-import { useRealTimeConnectionEventListener } from './useRealTimeConnectionEventListener'
-
-export {
-  useRealTimeEventListener,
-  useRealTimeEventTrigger,
-  useRealTimeConnectionEventListener,
-}
+export * from './useRealtimeEventListener'
+export * from './useRealTimeEventTrigger'
+export * from './useRealTimeConnectionEventListener'
