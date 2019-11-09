@@ -63,21 +63,5 @@
   "peerDependencies": {
     "prop-types": "^15.7.2",
     "react": "^16.8.6"
-  },
-  "jest": {
-    "rootDir": ".",
-    "roots": [
-      "<rootDir>/test/"
-    ],
-    "snapshotSerializers": [
-      "<rootDir>/node_modules/enzyme-to-json/serializer"
-    ],
-    "setupFilesAfterEnv": [
-      "<rootDir>/test/setup.js"
-    ],
-    "testPathIgnorePatterns": [
-      "<rootDir>/node_modules/",
-      "<rootDir>/tests/setup.js"
-    ]
   }
 }
