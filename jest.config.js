@@ -1,11 +1,17 @@
 module.exports = {
-  "roots": [
-    'test'
+  roots: [
+    "test",
   ],
-  "snapshotSerializers": [
-    "<rootDir>/node_modules/enzyme-to-json/serializer"
+  testMatch: [
+    "**/?(*.)+(spec|test).+(ts|tsx|js)",
   ],
-  "setupFilesAfterEnv": [
-    "<rootDir>/test/setup.js"
-  ]
+  transform: {
+    "^.+\\.(ts|tsx)?$": "ts-jest",
+  },
+  snapshotSerializers: [
+    "<rootDir>/node_modules/enzyme-to-json/serializer",
+  ],
+  setupFilesAfterEnv: [
+    "<rootDir>/test/setupEnzyme.ts",
+  ],
 }
