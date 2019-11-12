@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<RealTimeProvider /> should render 1`] = `
-<RealTimeProvider
+<Component
   connector={
     Object {
       "connection": Object {
@@ -13,7 +13,7 @@ exports[`<RealTimeProvider /> should render 1`] = `
     }
   }
 >
-  <RealTimeChannel
+  <Component
     name="test"
   >
     <MyComponent>
@@ -21,6 +21,6 @@ exports[`<RealTimeProvider /> should render 1`] = `
         Test
       </span>
     </MyComponent>
-  </RealTimeChannel>
-</RealTimeProvider>
+  </Component>
+</Component>
 `;

@@ -8,7 +8,7 @@ import {
   useRealTimeConnectionEventListener,
 } from '../../src'
 
-describe(`<RealTimeProvider />`, () => {
+describe('<RealTimeProvider />', () => {
   let connector, wrapper, unsubscribe, bind, unbind, trigger
   let MyComponent
 
@@ -27,7 +27,9 @@ describe(`<RealTimeProvider />`, () => {
     }
     MyComponent = ({ callback }) => {
       useRealTimeEventListener(`CommentCreated`, callback)
-      return (<span>Test</span>)
+      return (
+        <span>Test</span>
+      )
     }
   })
 
