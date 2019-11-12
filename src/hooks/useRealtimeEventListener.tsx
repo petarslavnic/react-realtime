@@ -1,7 +1,7 @@
 import { useEffect, useContext } from 'react'
 import { ChannelContext } from '../context'
 
-export const useRealTimeEventListener = (eventName, eventCallback) => {
+export const useRealTimeEventListener = (eventName: string, eventCallback: Function) => {
   const { bind, unbind } = useContext(ChannelContext)
 
   useEffect(

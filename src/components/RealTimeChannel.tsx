@@ -1,14 +1,18 @@
 import React, { useState, useContext, useEffect } from 'react'
-import PropTypes from 'prop-types'
-import { ServiceContext, ChannelContext } from '../context'
+import { ServiceContext, ChannelContext, Channel } from '../context'
 
-const initialState = {
+const initialState: Channel = {
   bind: () => {},
   unbind: () => {},
   trigger: () => {},
 }
 
-export const RealTimeChannel = ({ name, children }) => {
+interface RealTimeChannelProps {
+  name: string;
+  children?: React.ReactNode;
+}
+
+export const RealTimeChannel: React.FC<RealTimeChannelProps> = ({ name, children }) => {
   const { subscribe, unsubscribe } = useContext(ServiceContext)
   const [ value, setValue ] = useState(initialState)
 
@@ -16,17 +20,7 @@ export const RealTimeChannel = ({ name, children }) => {
     () => {
       const channel = subscribe(name)
 
-      setValue({
-        bind(...attrs) {
-          channel.bind(...attrs)
-        },
-        unbind(...attrs) {
-          channel.unbind(...attrs)
-        },
-        trigger(...attrs) {
-          channel.trigger(...attrs)
-        },
-      })
+      setValue(channel)
 
       return () => {
         unsubscribe(name)
@@ -40,9 +34,4 @@ export const RealTimeChannel = ({ name, children }) => {
       {React.Children.only(children)}
     </ChannelContext.Provider>
   )
-}
-
-RealTimeChannel.propTypes = {
-  name: PropTypes.string.isRequired,
-  children: PropTypes.any,
 }

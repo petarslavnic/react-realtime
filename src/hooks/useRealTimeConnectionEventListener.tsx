@@ -1,7 +1,7 @@
 import { useEffect, useContext } from 'react'
 import { ServiceContext } from '../context'
 
-export const useRealTimeConnectionEventListener = (eventName, eventCallback) => {
+export const useRealTimeConnectionEventListener = (eventName: string, eventCallback: Function) => {
   const { connection: { bind, unbind } } = useContext(ServiceContext)
 
   useEffect(
