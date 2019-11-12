@@ -2,10 +2,11 @@
   "name": "react-realtime",
   "version": "1.2.0",
   "description": "Set of components which provides easy integration Pusher like notification service into your React application.",
-  "main": "./dist/react-realtime.js",
+  "main": "dist/react-realtime.js",
   "files": [
-    "./dist"
+    "dist"
   ],
+  "types": "dist",
   "author": "Petar Slavnic <petarslavnic@gmail.com> (https://github.com/petarslavnic)",
   "license": "MIT",
   "repository": {
@@ -40,6 +41,8 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
+    "@types/react": "^16.9.11",
+    "awesome-typescript-loader": "^5.2.1",
     "babel-eslint": "^10.0.2",
     "babel-loader": "^8.0.6",
     "clean-webpack-plugin": "^3.0.0",
@@ -57,11 +60,11 @@
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "terser-webpack-plugin": "^2.2.1",
+    "typescript": "^3.7.2",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10"
   },
   "peerDependencies": {
-    "prop-types": "^15.7.2",
     "react": "^16.8.6"
   }
 }

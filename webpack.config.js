@@ -1,10 +1,11 @@
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const pkg = require('./package.json');
 
 module.exports = {
   mode: 'production',
-  entry: './src/index.js',
+  entry: './src/index.ts',
   devtool: 'source-map',
   output: {
     filename: 'react-realtime.js',
@@ -22,21 +23,17 @@ module.exports = {
       }),
     ],
   },
-  externals: [
-    'react',
-    'prop-types',
-  ],
+  externals: Object.keys(pkg.peerDependencies || {}),
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: 'babel-loader',
-      },
+        test: /\.tsx?$/,
+        loader: 'awesome-typescript-loader'
+      }
     ],
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.ts', '.tsx', '.js', '.jsx'],
   },
   plugins: [
     new CleanWebpackPlugin(),
