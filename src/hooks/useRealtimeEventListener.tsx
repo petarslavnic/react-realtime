@@ -1,17 +1,20 @@
 import { useEffect, useContext } from 'react'
 import { ChannelContext } from '../context'
 
-export const useRealTimeEventListener = (eventName: string, eventCallback: Function) => {
-  const { bind, unbind } = useContext(ChannelContext)
+export const useRealTimeEventListener = (
+  eventName: string, 
+  eventCallback: (data: any) => void
+): void => {
+  const { channel } = useContext(ChannelContext)
 
   useEffect(
     () => {
-      bind(eventName, eventCallback)
+      channel?.bind(eventName, eventCallback)
 
       return () => {
-        unbind(eventName, eventCallback)
+        channel?.unbind(eventName, eventCallback)
       }
     },
-    [bind, unbind, eventName, eventCallback]
+    [channel, eventName, eventCallback]
   )
 }

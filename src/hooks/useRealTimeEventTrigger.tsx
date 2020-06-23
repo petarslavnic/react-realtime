@@ -1,8 +1,8 @@
 import { useContext } from 'react'
 import { ChannelContext } from '../context'
 
-export const useRealTimeEventTrigger = () => {
-  const { trigger } = useContext(ChannelContext)
+export const useRealTimeEventTrigger = (): ((event: string, data: any) => boolean) | undefined => {
+  const { channel } = useContext(ChannelContext)
 
-  return trigger
+  return channel?.trigger
 }
