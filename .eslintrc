@@ -1,5 +1,9 @@
 {
-  "extends": ["eslint:recommended"],
+  "root": true,
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
   "env": {
     "browser": true,
     "node": true,
@@ -7,12 +11,17 @@
     "jest": true,
     "es6": true
   },
-  "parser": "babel-eslint",
-  "plugins": ["react", "compat", "react-hooks"],
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint",
+    "react", 
+    "compat", 
+    "react-hooks"
+  ],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
-    },
+    }
   },
   "settings": {
     "react": {
@@ -30,7 +39,7 @@
     "no-undef": 2,
     "no-unreachable": 2,
     "no-unused-vars": [2, {
-      ignoreRestSiblings: true,
+      "ignoreRestSiblings": true
     }],
     "no-useless-constructor": 2,
     "no-var": 2,
@@ -46,11 +55,8 @@
     "react/jsx-closing-bracket-location": 2,
     "react/jsx-indent": [ 2, 2 ],
     "react/jsx-indent-props": [ 2, 2 ],
-    "react/jsx-key": 2,
     "react/jsx-no-duplicate-props": 2,
     "react/jsx-no-undef": 2,
-    "react/jsx-uses-react": 2,
-    "react/jsx-uses-vars": 2,
     "react/jsx-no-bind": 2,
     "react/no-direct-mutation-state": 2,
     "react/no-string-refs": 2,
@@ -58,8 +64,12 @@
     "react/no-unused-prop-types": 2,
     "react/prefer-stateless-function": 2,
     "react/self-closing-comp": 2,
-    "react/react-in-jsx-scope": 2,
-    "react-hooks/rules-of-hooks": 'error',
-    "react-hooks/exhaustive-deps": 'warn'
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "compat/compat": "error",
+    "react/jsx-uses-vars": "error",
+    "react/jsx-uses-react": "error",
+    "react/react-in-jsx-scope": "error",
+    "react/jsx-key": "warn"
   }
 }
