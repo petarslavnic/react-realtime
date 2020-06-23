@@ -1,36 +1,30 @@
-import React, { useState, useContext, useEffect } from 'react'
-import { ServiceContext, ChannelContext, Channel } from '../context'
-
-const initialState: Channel = {
-  bind: () => {},
-  unbind: () => {},
-  trigger: () => {},
-}
+import React, { FC, useState, useContext, useEffect } from 'react'
+import { ServiceContext, ChannelContext } from '../context'
+import * as PusherTypes from 'pusher-js'
 
 interface RealTimeChannelProps {
   name: string;
-  children?: React.ReactNode;
 }
 
-export const RealTimeChannel: React.FC<RealTimeChannelProps> = ({ name, children }) => {
-  const { subscribe, unsubscribe } = useContext(ServiceContext)
-  const [ value, setValue ] = useState(initialState)
+export const RealTimeChannel: FC<RealTimeChannelProps> = ({ name, children }) => {
+  const { pusher } = useContext(ServiceContext)
+  const [ channel, setChannel ] = useState<PusherTypes.Channel>()
 
   useEffect(
     () => {
-      const channel = subscribe(name)
+      const channel = pusher?.subscribe(name)
 
-      setValue(channel)
+      setChannel(channel)
 
       return () => {
-        unsubscribe(name)
+        pusher?.unsubscribe(name)
       }
     },
-    [name, subscribe, unsubscribe]
+    [name, pusher]
   )
 
   return (
-    <ChannelContext.Provider value={value}>
+    <ChannelContext.Provider value={{ channel }}>
       {React.Children.only(children)}
     </ChannelContext.Provider>
   )

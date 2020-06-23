@@ -1,26 +1,14 @@
-import React, { useMemo } from 'react'
-import { ServiceContext, Connector } from '../context'
+import React, { FC } from 'react'
+import { ServiceContext } from '../context'
+import Pusher from 'pusher-js'
 
 interface RealTimeProviderProps {
-  connector: Connector;
-  children?: React.ReactNode;
+  connector: Pusher;
 }
 
-export const RealTimeProvider: React.FC<RealTimeProviderProps> = ({ connector, children }) => {
-  const value = useMemo(() => {
-    return {
-      subscribe(channelName: string) {
-        return connector.subscribe(channelName)
-      },
-      unsubscribe(channelName: string) {
-        connector.unsubscribe(channelName)
-      },
-      connection: connector.connection,
-    }
-  }, [connector])
-
+export const RealTimeProvider: FC<RealTimeProviderProps> = ({ connector, children }) => {
   return (
-    <ServiceContext.Provider value={value}>
+    <ServiceContext.Provider value={{ pusher: connector }}>
       {React.Children.only(children)}
     </ServiceContext.Provider>
   )
