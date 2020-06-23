@@ -1,26 +1,8 @@
 import React from 'react'
-import { Channel } from './ChannelContext'
+import Pusher from 'pusher-js'
 
 export interface Connector {
-  subscribe(channelName: string): Channel;
-  unsubscribe(channelName: string): void;
-  connection: {
-    bind(eventName: string, eventCallback: Function): void,
-    unbind(eventName: string, eventCallback: Function): void,
-  };
+  pusher?: Pusher;
 }
 
-export const ServiceContext = React.createContext<Connector>({
-  subscribe() {
-    return {
-      bind: () => {},
-      unbind: () => {},
-      trigger: () => {},
-    }
-  },
-  unsubscribe: () => {},
-  connection: {
-    bind: () => {},
-    unbind: () => {},
-  },
-})
+export const ServiceContext = React.createContext<Connector>({})

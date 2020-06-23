@@ -1,13 +1,8 @@
 import React from 'react'
+import * as PusherTypes from 'pusher-js'
 
 export interface Channel {
-  bind(eventName: string, eventCallback: Function): void,
-  unbind(eventName: string, eventCallback: Function): void,
-  trigger(eventName: string, data: Object): void,
+  channel?: PusherTypes.Channel;
 }
 
-export const ChannelContext = React.createContext<Channel>({
-  bind: () => {},
-  unbind: () => {},
-  trigger: () => {},
-})
+export const ChannelContext = React.createContext<Channel>({})
