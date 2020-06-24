@@ -46,7 +46,6 @@
     "object-curly-spacing": [ "error", "always" ],
     "object-shorthand": "error",
     "prefer-arrow-callback": "error",
-    "quotes": [ "error", "backtick" ],
     "semi": [ "error", "never" ],
     "space-in-parens": [ "error", "never" ],
     "strict": "off",
