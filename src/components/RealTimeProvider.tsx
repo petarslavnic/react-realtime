@@ -3,12 +3,12 @@ import { ServiceContext } from '../context'
 import Pusher from 'pusher-js'
 
 interface RealTimeProviderProps {
-  connector: Pusher;
+  instance: Pusher;
 }
 
-export const RealTimeProvider: FC<RealTimeProviderProps> = ({ connector, children }) => {
+export const RealTimeProvider: FC<RealTimeProviderProps> = ({ instance, children }) => {
   return (
-    <ServiceContext.Provider value={{ pusher: connector }}>
+    <ServiceContext.Provider value={{ pusher: instance }}>
       {React.Children.only(children)}
     </ServiceContext.Provider>
   )

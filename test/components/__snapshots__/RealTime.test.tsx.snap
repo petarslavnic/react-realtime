@@ -2,7 +2,7 @@
 
 exports[`<RealTimeProvider /> should render 1`] = `
 <Component
-  connector={
+  instance={
     Object {
       "connection": Object {
         "bind": [MockFunction],

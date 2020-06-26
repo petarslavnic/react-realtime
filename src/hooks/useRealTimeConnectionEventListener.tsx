@@ -9,10 +9,10 @@ export const useRealTimeConnectionEventListener = (
 
   useEffect(
     () => {
-      pusher?.connection?.bind(eventName, eventCallback)
+      pusher?.connection.bind(eventName, eventCallback)
 
       return () => {
-        pusher?.connection?.unbind(eventName, eventCallback)
+        pusher?.connection.unbind(eventName, eventCallback)
       }
     },
     [pusher, eventName, eventCallback]

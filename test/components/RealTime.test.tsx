@@ -44,7 +44,7 @@ describe('<RealTimeProvider />', () => {
 
   it(`should render`, () => {
     wrapper = mount(
-      <RealTimeProvider connector={connector}>
+      <RealTimeProvider instance={connector}>
         <RealTimeChannel name="test">
           <MyComponent />
         </RealTimeChannel>
@@ -56,7 +56,7 @@ describe('<RealTimeProvider />', () => {
 
   it(`should unsubscribe channel on component will unmount event`, () => {
     wrapper = mount(
-      <RealTimeProvider connector={connector}>
+      <RealTimeProvider instance={connector}>
         <RealTimeChannel name="test">
           <MyComponent />
         </RealTimeChannel>
@@ -71,7 +71,7 @@ describe('<RealTimeProvider />', () => {
     const myCallback = jest.fn()
 
     wrapper = mount(
-      <RealTimeProvider connector={connector}>
+      <RealTimeProvider instance={connector}>
         <RealTimeChannel name="test">
           <MyComponent callback={myCallback}/>
         </RealTimeChannel>
@@ -100,7 +100,7 @@ describe('<RealTimeProvider />', () => {
     }
 
     wrapper = mount(
-      <RealTimeProvider connector={connector}>
+      <RealTimeProvider instance={connector}>
         <RealTimeChannel name="test">
           <MyComponent />
         </RealTimeChannel>
@@ -122,7 +122,7 @@ describe('<RealTimeProvider />', () => {
     const myCallback = jest.fn()
 
     wrapper = mount(
-      <RealTimeProvider connector={connector}>
+      <RealTimeProvider instance={connector}>
         <RealTimeChannel name="test">
           <MyComponent callback={myCallback} />
         </RealTimeChannel>
