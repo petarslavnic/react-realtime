@@ -4,7 +4,7 @@ node_js:
   - "10"
   - "12"
 script:
-  - yarn lint:ts
+  - yarn lint
   - yarn test:cov
 after_success:
   - yarn coverage
